@@ -10,12 +10,11 @@
     * Tweets are synced periodically to the database on an interval(crontab is fine)  If you can not do frontend, You can simply showcase the app with APIs.Bonus points for end-to-end implementation
 
 ### Technologies used
-
-      * Python - v2.7      
-      * Django - v1.9
-      * BootStrap -v4
-      * HTML 
-      * CSS
-      * JavaScript
-      * jQuery
-      * Ajax
+   * Python - v2.7
+   * Django - v1.9
+   * BootStrap -v4
+   * HTML 
+   * CSS
+   * JavaScript
+   * jQuery
+   * Ajax
