@@ -1,5 +1,5 @@
 ## Twitter-Timline-Assessment
-# Any user to view their Twitter stream within the app and User can search, filter and sort tweets.
+## Any user to view their Twitter stream within the app and User can search, filter and sort tweets.
 
 1. The application flow,
     * User sign in with DB
