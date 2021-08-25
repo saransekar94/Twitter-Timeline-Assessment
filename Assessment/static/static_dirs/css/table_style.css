@@ -1,0 +1,68 @@
+table, th, td {
+    border: 1px solid black;
+}
+
+table {
+	width: 100%;
+	font-family: Arial !important;
+	font-size: small !important;	
+}
+
+div.table-container{
+	display: block;
+}
+
+tr {
+	height: 30px;
+	background-color: white !important;
+	font-size: 14px !important;
+	font-weight: bolder !important;
+}
+
+
+th > a, th {
+	color: #000000 !important;
+	font-size: 16px !important;
+	font-weight: bolder !important;
+	text-align: center;
+	text-shadow: 1px 1px #f2f2f2;
+	background-color: #f8f8f8;
+}
+
+.SumoSelect .select-all{
+	height: 36px;
+}
+
+
+tr.odd.gradeA td.sorting_1 {
+	background-color: #ffffff;
+}
+
+table.display tr.even.row_selected td {
+	background-color: #ffffff;
+}
+
+table.display tr.odd.row_selected td {
+	background-color: red;
+}
+
+
+.btn {
+    font-weight: bolder;
+    background-color: #ffffff;
+}
+
+.btn-default {
+    background-color: #ffffff !important;
+    border-color: #000000 !important;
+    color: #000000 !important;
+    font-weight: bolder !important;
+}
+
+.sorting_1 {
+	background-color: #ffffff;
+}
+
+.toolbar {
+    float: left;
+}

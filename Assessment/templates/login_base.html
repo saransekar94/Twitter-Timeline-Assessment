@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{% block title %}{{title}}{% endblock %} </title>
+    {% block stylesheet %}
+     {% load staticfiles %}
+      <link rel="stylesheet" type="text/css" href="{% static "css/cdn.css" %}" >
+      <link rel="stylesheet" href="{% static "bootstrap-3.3.6/bootstrap-3.3.6/dist/css/bootstrap.min.css" %}">
+      <link rel="stylesheet" href="{% static "font-awesome-4.5.0/css/font-awesome.css" %}">
+      <link href="{% static "css/base.css" %}" rel="stylesheet" />
+      <link href="{% static "css/loading.css" %}" rel="stylesheet" />
+      <link href="{% static "time-picker/bootstrap-timepicker.css" %}" rel="stylesheet">
+    {% endblock %}
+    {% block script %}
+    <script type="text/javascript" src="{% static "js/jquery-1.8.3.min.js" %}"></script>
+    <script src="{% static 'js/jquery-ui.js' %}"></script>
+    <script src="{% static "time-picker/moment-timepicker.js" %}"></script>
+    <script src="{% static "time-picker/bootstrap-timepicker.js" %}"></script>
+    <script type="text/javascript" src="{% static "bootstrap-3.3.6/bootstrap-3.3.6/js/tab.js" %}"></script>
+    <script type="text/javascript" src="{% static "bootstrap-3.3.6/bootstrap-3.3.6/js/dropdown.js" %}"></script>
+    <script type="text/javascript" src="{% static "bootstrap-3.3.6/bootstrap-3.3.6/js/tooltip.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/loading.js" %}"></script>
+    {% endblock %}
+</head>
+    
+<body style="background-color: #FFFFFF" >
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

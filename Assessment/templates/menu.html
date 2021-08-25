@@ -1,0 +1,106 @@
+{% load staticfiles %}
+{% load check_permissions %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.navbar-inverse {
+    background-color: #fff;
+    border-color: #ffffff;
+}
+
+.sidenav {
+  border-right-style: inset;
+  border-color: #dededec4;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #818181;
+}
+
+#Equipment a:hover {
+  color: black;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: -10px;
+  right: -5px !important;
+  font-size: 26px;
+  margin-left: 50px;
+  color: red;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+    border-right-style: inset;
+    border-color: #dededec4;
+}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid"><br>
+      <p class=""id="screen1" style="font-size: 18px;float:right; margin-right: 2%;"><span class="user"></span></p>                
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <div class="span" style="display: flex;margin-top: -55px;">
+        <div  class="col-md-80">
+        <img class="navbar-brand logo" src="{% static "img/Twitter.png" %}" style="height: 80px;width: 130px;"/>
+        </div>
+        <div class="col-md-20">
+        <a id='logout' class="hand-pointer" data-toggle="tooltip"><span class="glyphicon glyphicon-log-out" style="font-size: 75%;
+          margin-top: 80%;color:#0000ff;float:right;"></span></a>
+        </div>
+      </div>
+      <hr style="margin: auto;">
+      </div>
+    <span style="font-size:30px;cursor:pointer;color: #283995;margin-left: 10px;" onclick="openNav();openOffcanvas()">&#9776;</span>
+  </div>
+</nav>   
+
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+
+$('#logout').tooltip();
+$('#logout').click(function() {
+  window.location.href="/logout/";
+});
+</script>
+   
+</body>
+</html> 

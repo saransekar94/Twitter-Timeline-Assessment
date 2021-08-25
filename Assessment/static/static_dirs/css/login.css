@@ -1,0 +1,8 @@
+.login_panel{
+	background-color:#f2f2f2;
+	height:200px;
+	width:300px;
+	border-radius: 25px;
+    border: 2px solid #f2f2f2;
+    padding: 20px;
+}

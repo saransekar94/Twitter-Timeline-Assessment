@@ -1,0 +1,113 @@
+<meta http-equiv="Context-Type" content="text/html; charset=US-ASCII">
+
+{% extends "base.html" %}
+{% block title %}TimeLine List{% endblock %}
+{% load check_permissions %}
+
+{% block stylesheet %} {% load staticfiles %} {{ block.super }}
+
+<link href="{% static "datatables/dataTables.responsive.css" %}" rel="stylesheet">
+<link href="{% static "datatables/dataTables.bootstrap.css" %}" rel="stylesheet">
+<!-- Bootstrap TimePicker CSS -->
+<link href="{% static "time-picker/bootstrap-timepicker.css" %}" rel="stylesheet">
+<link href="{% static "css/jquery.dataTables.min.css"%}" rel="stylesheet">
+<link href="{% static "css/buttons.dataTables.min.css"%}"  rel="stylesheet">
+<link rel="stylesheet" href="{% static "css/bootstrap-select.css"%}">
+
+
+{% endblock %}
+
+{% block script %}
+{{ block.super }}
+
+<script src="{% static "bootstrap-select/dist/js/bootstrap-select.js" %}"></script>
+<script src="{% static "datatables/default/datatables.js" %}"></script>
+<script src="{% static "datatables/dataTables.bootstrap.min.js" %}"></script>
+<!-- TimePicker JS -->
+<script src="{% static "time-picker/moment-timepicker.js" %}"></script>
+<script src="{% static "time-picker/bootstrap-timepicker.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery.dataTables.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/dataTables.buttons.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/pdfmake.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/vfs_fonts.js" %}"></script>
+<script type="text/javascript" src="{% static "js/buttons.html5.min.js" %}"></script>
+
+{% endblock %}
+
+{% block content %}
+<h1 align="center">Twitter Timeline List</h1>
+<div id="timeline" style="display: none;">{{twitter_list}}</div>
+<table align="center" id="timeline_table_id" class="table table-striped table-bordered compact cell-border nowrap" width=100% >
+	<thead>
+            <tr>
+                <th>Id</th>
+                <th>Text</th>
+                <th>Created Date</th>
+            </tr>
+    </thead>
+    <tbody class="datatable">
+    {% for timeline in timeline_list %}	
+    	<tr>
+                <td>{{timeline.id}}</td>
+                <td>{{timeline.text}}</td>
+                <td>{{timeline.created_date}}</td>
+        </tr> 
+    {% endfor %}
+    <!-- <tbody></tbody> -->
+    </tbody>           
+
+</table>
+
+<script type="text/javascript">
+	$('#timeline_table_id').DataTable({
+                    dom: 'Blfrtip',
+					buttons: [
+            'pdfHtml5','csv'
+        ]
+                    
+    });
+
+    /* Generating CSRF-TOKEN for AJAX POST*/
+    $.ajaxSetup({ 
+         beforeSend: function(xhr, settings) {
+             function getCookie(name) {
+                 var cookieValue = null;
+                 if (document.cookie && document.cookie != '') {
+                     var cookies = document.cookie.split(';');
+                     for (var i = 0; i < cookies.length; i++) {
+                         var cookie = jQuery.trim(cookies[i]);
+                         // Does this cookie string begin with the name we want?
+                         if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                             cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                             break;
+                         }
+                     }
+                 }
+                 return cookieValue;
+             }
+             if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                 // Only send the token to relative URLs i.e. locally.
+                 xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+             }
+         } 
+    });
+
+
+    // $(document).ready(function() {
+        // debugger
+        // var timeline = $("#timeline").text()
+        // twitt_json = JSON.parse(timeline)
+        // var twitter_json = timeline.replace(/'/g, '"');
+        // var twitt_json =  JSON.parse(twitter_json);
+        // var htmlContent = ""  
+        // for(var i=0;i<twitt_json.length;i++){
+            // htmlContent +="<div><tr><td>" + twitt_json[i]['id'] + "</td>" + "<td>" + twitt_json[i]['text'] + "</td>" + "<td>" + twitt_json[i]['Created_date'] +"</td></tr></div>"
+        // }
+        // var widget_data = $('#timeline_table_id > tbody').html(htmlContent);    
+        // console.log(status_json)
+        // setInterval(refreshTimeLine, 2000);
+    // });
+
+	
+</script>
+{% endblock %}

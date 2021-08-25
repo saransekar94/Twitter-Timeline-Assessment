@@ -1,0 +1,83 @@
+.base-header {
+    height: 80px;
+}
+
+.form-horizontal .control-label {
+    text-align: left;
+    padding: 7px;
+}
+
+.logo {
+    width: 160px;
+    height: auto;
+}
+
+.navbar-brand {
+    margin-left: 20px !important;
+    padding: 5px 10px;
+}
+
+@media (min-width: 768px) {
+    .navbar-nav {
+        margin-top: 27px !important;
+        margin-left: 40px !important;
+    }
+}
+
+.upload-txt{
+    float: right;
+    margin-bottom: -25px;
+    margin-top: 25px;
+    padding: 0px 15px;
+    text-align: right;
+}
+
+.modal-dialog {
+    width: 882px;
+}
+
+.navbar-right {
+    margin-right: 50px;
+}
+
+.glyphicon {
+    cursor: pointer;
+    /* top: 0;
+    right: 25px;
+    font-size: 12px;
+    margin-left: 150px; */
+  
+}
+
+.loader-class {
+    width: 20%;
+}
+.hand-pointer{
+    cursor: pointer;
+}
+
+.navbar-text {
+    float: left;
+    margin-left: 83px !important;
+    margin-right: 0 !important;
+}
+.navbar-text {
+    margin-bottom: 6px !important;
+    margin-top: -22px !important;
+}
+.nav {
+    list-style: outside none none;
+    margin-bottom: 0;
+    padding-left: 0px !important;
+}
+
+.dataTables_scroll
+{
+    overflow:auto;
+}
+.c3-ygrid-line.grid801 line {
+    stroke: red;
+}
+.c3-ygrid-line.grid800 line {
+    stroke: green;
+}

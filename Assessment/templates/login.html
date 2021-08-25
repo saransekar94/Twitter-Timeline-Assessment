@@ -1,0 +1,143 @@
+{% extends "login_base.html" %} 
+{% block title %}login{% endblock %} 
+{% block stylesheet %} 
+{% load staticfiles %} 
+{{ block.super }}
+
+<!-- <link href="{% static " css/login.css " %}" rel="stylesheet" />  -->
+{% endblock %} 
+<!-- {% block sign_out %} {% endblock %}  -->
+{% block welcome %}
+{% endblock %}
+{% block content %}
+{% for error in form.non_field_errors %}
+    {{error}}
+{% endfor %}
+
+<style type="text/css">
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+#bg-image {
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+img {
+  width: 40%;
+  height: auto;
+  /* position: relative; */
+}
+
+</style>
+<body id="bg-image" style="background-image: url('{% static "img/Twitter.png" %}';>
+  <div class="container" align="center">
+      <div style="display:inline-block;width:500px;height:100px;margin-bottom:70px">
+        <img src="{% static "img/Twitter.png" %}" width="55%" height="40%"/>
+          <div></div>
+          <div class="panel panel-default" style="transition: box-shadow 280ms cubic-bezier(.4,0,.2,1);
+          display: block;">
+              <div class="panel-body" style="padding-bottom: 0px;">
+                <b style="color:black; font-size: 24px; font-weight: 800; text-align:center; display: block; position: relative; padding: 24px; border-radius: 2px;">Login</b> 
+                  <form id="login" class="form-horizontal" role="form" method="POST">
+                      {% csrf_token %}
+                    <div style="background-color: #e8f0fe; border-radius: 16px; padding: 12px; margin-top: 12px; margin-bottom: 12px; width: 100%; border: none;">
+                        {{ form.username }}
+                    </div>
+                    <div style="background-color: #e8f0fe; border-radius: 16px; padding: 12px; margin-top: 12px; margin-bottom: 12px; width: 100%; border: none;">
+                        {{ form.password }}
+                    </div>
+                    <div >
+                         <button id="submit" type="submit" style=" background-color: rgb(29, 161, 242); color: white; border-radius: 16px; padding: 12px; margin-top: 12px; margin-bottom: 12px; width: 100%; border: none;" class="btn btn-default">Login in</button>
+                    </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+<script type="text/javascript">
+/* Generating CSRF-TOKEN for AJAX POST*/
+$.ajaxSetup({ 
+     beforeSend: function(xhr, settings) {
+         function getCookie(name) {
+             var cookieValue = null;
+             if (document.cookie && document.cookie != '') {
+                 var cookies = document.cookie.split(';');
+                 for (var i = 0; i < cookies.length; i++) {
+                     var cookie = jQuery.trim(cookies[i]);
+                     // Does this cookie string begin with the name we want?
+                     if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                         break;
+                     }
+                 }
+             }
+             return cookieValue;
+         }
+         if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+             // Only send the token to relative URLs i.e. locally.
+             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+         }
+     } 
+});
+/* attach a submit handler to the form */
+$("#login").submit(function(event) {
+
+    /* stop form from submitting normally */
+    event.preventDefault();
+
+    /* get some values from elements on the page: */
+    var $form = $( this )
+
+    /* Send the data using post */
+    $.ajax({
+        "type": "POST",
+        "url": $form.attr( 'action' ),
+        "data" : new FormData( this ),
+        "datatype": "json",
+        "processData": false,
+        "contentType": false,
+        beforeSend: function() {
+            $( "#submit" ).isLoading({
+                text: "Logging in",
+                position: "inside",
+            });
+        },
+        success: function(json) {
+            if(json.status==1){
+                window.location.href = json.redirect_url;
+            }
+            else{
+                $.each(json.error, function(k, v) {
+                    alert(v);
+                    $( "#submit" ).isLoading("hide");
+                    $( "#submit" ).html("Sign in");
+                    $("#password").val('');
+                    return false
+                });
+            }
+        },
+        complete: function() {
+          if (window.onload) {
+            $( "#submit" ).isLoading("hide");
+            $( ".btn-default" ).html("Sign in");
+          }
+        },
+        error: function (jqXHR, exception) {
+          if (window.onload) {
+            $( "#submit" ).isLoading("hide");
+          }
+        },
+    });
+});
+</script>
+{% endblock %}
