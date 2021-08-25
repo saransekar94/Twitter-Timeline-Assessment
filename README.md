@@ -11,11 +11,11 @@
 
 ### Technologies used
 
-      Python - v2.7      
-      Django - v1.9
-      BootStrap -v4
-      HTML 
-      CSS
-      JavaScript
-      jQuery
-      Ajax
+      * Python - v2.7      
+      * Django - v1.9
+      * BootStrap -v4
+      * HTML 
+      * CSS
+      * JavaScript
+      * jQuery
+      * Ajax
