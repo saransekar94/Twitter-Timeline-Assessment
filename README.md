@@ -18,3 +18,5 @@
    * JavaScript
    * jQuery
    * Ajax
+## Run the application
+python manage.py runserver along with port number(0:9000)
